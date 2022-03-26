@@ -4,17 +4,21 @@ public class Rover {
 	
 	private Coordinate coordinate;
 	
-	private Mars map;
+	private Mars mars;
 	
 	private CardinalPoint direction;
 	
-	private static final int[] moveX = {0, 1, 0, -1};
-	private static final int[] moveY = {1, 0, -1, 0};
+	private static final Coordinate[] moveCoordinate = {
+			new Coordinate(0, 1),  // N - North
+			new Coordinate(1, 0),  // E - East
+			new Coordinate(0, -1), // S - South
+			new Coordinate(-1, 0)  // W - West
+	};
 	
-	public Rover(int x, int y, String direction, Mars map) {
+	public Rover(int x, int y, String direction, Mars mars) {
 		coordinate = new Coordinate(x, y);
 		this.direction = CardinalPoint.valueOf(direction);
-		this.map = map;
+		this.mars = mars;
 	}
 	
 	public void doAction(char cAction) {
@@ -38,8 +42,8 @@ public class Rover {
 	}
 
 	private void move() {
-		Coordinate nextCoordinate = new Coordinate(coordinate.row() + moveX[direction.ordinal()], coordinate.column() + moveY[direction.ordinal()]);
-		if (map.isValid(nextCoordinate)) {
+		Coordinate nextCoordinate = new Coordinate(coordinate.row() + moveCoordinate[direction.ordinal()].row(), coordinate.column() + moveCoordinate[direction.ordinal()].column());
+		if (mars.isValid(nextCoordinate)) {
 			coordinate = nextCoordinate;
 		}
 	}
