@@ -1,6 +1,7 @@
 package br.com.italo.marsrovers;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Iterator;
@@ -10,8 +11,8 @@ public class MarsRovers {
 
 	private Mars mars;
 	
-	public void solveProblem() throws IOException {
-		List<String> lines = Files.readAllLines(Paths.get("input"));
+	public void solveProblem() throws IOException, URISyntaxException {
+		List<String> lines = Files.readAllLines(Paths.get(ClassLoader.getSystemResource("input").toURI()));
 		Iterator<String> iterateLines = lines.iterator();
 		initializeMars(iterateLines.next());
 		for (int i = 0; i < 2; i++) {
