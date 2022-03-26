@@ -8,22 +8,25 @@ import java.net.URISyntaxException;
 
 import org.junit.jupiter.api.Test;
 
-public class AppTest {
-	
+public class MarsRoversTest {
+
 	@Test
 	public void standardInput() throws IOException, URISyntaxException {
-		App.main(new String[] {"inputTest"});
+		MarsRovers marsRovers = new MarsRovers("inputTest");
+    	marsRovers.solveProblem();
 	}
 	
 	@Test
 	public void ifHasCollision() throws IOException, URISyntaxException {
-		App.main(new String[] {"inputTest2"});
+		MarsRovers marsRovers = new MarsRovers("inputTest2");
+    	marsRovers.solveProblem();
 	}
 	
 	@Test
 	public void fileNotFind() {
-		Exception exception = assertThrows(IllegalArgumentException.class, () -> App.main(new String[] {"Non-Existent File"}));
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> new MarsRovers("Non-Existent File"));
 		assertEquals("File Not Find: Non-Existent File", exception.getMessage());
 	}
+	
 	
 }
