@@ -1,10 +1,7 @@
 package br.com.italo.marsrovers;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
@@ -15,21 +12,12 @@ public class MarsRovers {
 	
 	private List<String> lines;
 	
-	public MarsRovers() throws IOException, URISyntaxException {
-		lines = Files.readAllLines(getFileFromResource("input"));
+	public MarsRovers() throws IOException {
+		lines = Files.readAllLines(Paths.get("input"));
 	}
 	
-	public MarsRovers(String fileName) throws IOException, URISyntaxException {
-		lines = Files.readAllLines(getFileFromResource(fileName));
-	}
-
-	private Path getFileFromResource(String fileName) throws URISyntaxException {
-		URL resource = ClassLoader.getSystemResource(fileName);
-		if (resource != null) {
-			return Paths.get(ClassLoader.getSystemResource(fileName).toURI());
-		} else {
-			throw new IllegalArgumentException("File Not Find: " + fileName);
-		}
+	public MarsRovers(String fileName) throws IOException {
+		lines = Files.readAllLines(Paths.get(fileName));
 	}
 	
 	public void solveProblem() {
